@@ -13,11 +13,11 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-
 package uberunit.descriptions;
 
 /**
- * Understands how to display information about test.
+ * Understands how to get the name of individual test methods written in
+ * Java.
  */
 public class JavaMethodBasedTestCaseDescription implements Description {
 
