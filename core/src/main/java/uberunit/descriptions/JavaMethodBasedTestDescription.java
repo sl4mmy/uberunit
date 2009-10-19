@@ -19,7 +19,7 @@ package uberunit.descriptions;
  * Understands how to get the name of individual test methods written in
  * Java.
  */
-public class JavaMethodBasedTestCaseDescription implements Description {
+public class JavaMethodBasedTestDescription implements Description {
 
         public String getName() {
                 return null;
