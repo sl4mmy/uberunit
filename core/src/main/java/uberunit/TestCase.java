@@ -21,7 +21,7 @@ import uberunit.observers.Observer;
 /**
  * Understands the process of automatically verifying code correctness.
  */
-public class Test {
+public class TestCase {
 
         private final Description description;
 
@@ -31,7 +31,7 @@ public class Test {
 
         private final ITest testCase;
 
-        public Test(final Description description, final Setup setup,
+        public TestCase(final Description description, final Setup setup,
             final TearDown tearDown, final ITest testCase) {
                 this.description = description;
                 this.setup = setup;

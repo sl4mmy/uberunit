@@ -15,7 +15,7 @@
  */
 package uberunit.suites;
 
-import uberunit.Test;
+import uberunit.TestCase;
 import uberunit.internal.Hierarchy;
 import uberunit.runners.MultiThreadedRunner;
 
@@ -29,11 +29,11 @@ public class Suite implements Hierarchy<Suite> {
 
         private final List<Suite> children;
 
-        private final List<Test> tests;
+        private final List<TestCase> tests;
 
         public Suite() {
                 this.children = new ArrayList<Suite>();
-                this.tests = new ArrayList<Test>();
+                this.tests = new ArrayList<TestCase>();
         }
 
         public Suite(final Suite parent) {
@@ -42,13 +42,13 @@ public class Suite implements Hierarchy<Suite> {
                 parent.addChild(this);
         }
 
-        public Suite(final List<Test> tests) {
+        public Suite(final List<TestCase> tests) {
                 this();
 
                 this.tests.addAll(tests);
         }
 
-        public Suite(final List<Test> tests,
+        public Suite(final List<TestCase> tests,
             final Suite parent) {
                 this(parent);
 

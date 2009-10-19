@@ -15,7 +15,7 @@
  */
 package uberunit.runners;
 
-import uberunit.Test;
+import uberunit.TestCase;
 import uberunit.observers.Observer;
 
 import java.util.List;
@@ -47,8 +47,8 @@ public class MultiThreadedRunner {
                 }
         }
 
-        public void scheduleAll(final List<Test> tests) {
-                for (final Test test : tests) {
+        public void scheduleAll(final List<TestCase> tests) {
+                for (final TestCase test : tests) {
                         threadPool.submit(new Runnable() {
                                 public void run() {
                                         test.run(observer);
