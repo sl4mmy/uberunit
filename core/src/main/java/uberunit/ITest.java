@@ -18,7 +18,7 @@ package uberunit;
 /**
  * Represents how to actually verify code correctness.
  */
-public interface TestCase {
+public interface ITest {
 
         boolean isIgnored();
 

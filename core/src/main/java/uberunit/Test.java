@@ -29,10 +29,10 @@ public class Test {
 
         private final TearDown tearDown;
 
-        private final TestCase testCase;
+        private final ITest testCase;
 
         public Test(final Description description, final Setup setup,
-            final TearDown tearDown, final TestCase testCase) {
+            final TearDown tearDown, final ITest testCase) {
                 this.description = description;
                 this.setup = setup;
                 this.tearDown = tearDown;
