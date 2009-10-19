@@ -21,9 +21,9 @@ import java.lang.reflect.Method;
 
 /**
  * Understands how to verify code correctness by sending messages to
- * Java objects via reflection.
+ * objects via reflection.
  */
-public class MethodTest implements Test {
+public class JavaMethodTest implements Test {
 
         private final Object testClassInstance;
 
@@ -31,23 +31,26 @@ public class MethodTest implements Test {
 
         private final Object[] arguments;
 
-        public MethodTest(final Object testClassInstance,
-            final Method testMethod, final Object[] arguments) {
+        private final boolean ignored;
+
+        private final boolean parallelizable;
+
+        public JavaMethodTest(final Object testClassInstance,
+            final Method testMethod, final Object[] arguments,
+            final boolean ignored, final boolean parallelizable) {
                 this.testClassInstance = testClassInstance;
                 this.testMethod = testMethod;
                 this.arguments = arguments;
+                this.ignored = ignored;
+                this.parallelizable = parallelizable;
         }
 
         public boolean isIgnored() {
-                final Ignore annotation = testMethod.getAnnotation(
-                    Ignore.class);
-                return annotation != null;
+                return ignored;
         }
 
         public boolean isParallelizable() {
-                final NotParallel annotation = testMethod.getAnnotation(
-                    NotParallel.class);
-                return annotation == null;
+                return parallelizable;
         }
 
         public void test() throws Exception {

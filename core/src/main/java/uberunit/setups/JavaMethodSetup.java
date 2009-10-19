@@ -22,10 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Understands how to initialize tests by sending messages to Java
- * objects via reflection.
+ * Understands how to initialize tests by sending messages to objects
+ * via reflection.
  */
-public class MethodSetup implements Setup {
+public class JavaMethodSetup implements Setup {
 
         private final List<Setup> children;
 
@@ -35,7 +35,7 @@ public class MethodSetup implements Setup {
 
         private final Object[] arguments;
 
-        public MethodSetup(final Object testClassInstance,
+        public JavaMethodSetup(final Object testClassInstance,
             final Method setupMethod, final Object[] arguments) {
                 this.testClassInstance = testClassInstance;
                 this.setupMethod = setupMethod;
@@ -44,7 +44,7 @@ public class MethodSetup implements Setup {
                 this.children = new ArrayList<Setup>();
         }
 
-        public MethodSetup(final Setup parent,
+        public JavaMethodSetup(final Setup parent,
             final Object testClassInstance,
             final Method setupMethod, final Object[] arguments) {
                 this(testClassInstance, setupMethod, arguments);

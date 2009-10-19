@@ -22,10 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Understands how to clean up after tests by sending messages to Java
+ * Understands how to clean up after tests by sending messages to
  * objects via reflection.
  */
-public class MethodTearDown implements TearDown {
+public class JavaMethodTearDown implements TearDown {
 
         private final List<TearDown> children;
 
@@ -35,7 +35,7 @@ public class MethodTearDown implements TearDown {
 
         private final Object[] arguments;
 
-        public MethodTearDown(final Object testClassInstance,
+        public JavaMethodTearDown(final Object testClassInstance,
             final Method tearDownMethod, final Object[] arguments) {
                 this.testClassInstance = testClassInstance;
                 this.tearDownMethod = tearDownMethod;
@@ -44,7 +44,7 @@ public class MethodTearDown implements TearDown {
                 this.children = new ArrayList<TearDown>();
         }
 
-        public MethodTearDown(final TearDown parent,
+        public JavaMethodTearDown(final TearDown parent,
             final Object testClassInstance, final Method tearDownMethod,
             final Object[] arguments) {
                 this(testClassInstance, tearDownMethod, arguments);
