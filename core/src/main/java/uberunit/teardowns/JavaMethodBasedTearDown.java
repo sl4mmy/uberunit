@@ -13,54 +13,54 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-package uberunit.setups;
+package uberunit.teardowns;
 
-import uberunit.Setup;
+import uberunit.TearDown;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Understands how to initialize tests by sending messages to objects
- * via reflection.
+ * Understands how to clean up after tests by sending messages to
+ * objects via reflection.
  */
-public class JavaMethodSetup implements Setup {
+public class JavaMethodBasedTearDown implements TearDown {
 
-        private final List<Setup> children;
+        private final List<TearDown> children;
 
         private final Object testClassInstance;
 
-        private final Method setupMethod;
+        private final Method tearDownMethod;
 
         private final Object[] arguments;
 
-        public JavaMethodSetup(final Object testClassInstance,
-            final Method setupMethod, final Object[] arguments) {
+        public JavaMethodBasedTearDown(final Object testClassInstance,
+            final Method tearDownMethod, final Object[] arguments) {
                 this.testClassInstance = testClassInstance;
-                this.setupMethod = setupMethod;
+                this.tearDownMethod = tearDownMethod;
                 this.arguments = arguments;
 
-                this.children = new ArrayList<Setup>();
+                this.children = new ArrayList<TearDown>();
         }
 
-        public JavaMethodSetup(final Setup parent,
-            final Object testClassInstance,
-            final Method setupMethod, final Object[] arguments) {
-                this(testClassInstance, setupMethod, arguments);
+        public JavaMethodBasedTearDown(final TearDown parent,
+            final Object testClassInstance, final Method tearDownMethod,
+            final Object[] arguments) {
+                this(testClassInstance, tearDownMethod, arguments);
 
                 parent.addChild(this);
         }
 
-        public void setUp() throws Exception {
-                for (Setup child : children) {
-                        child.setUp();
-                }
+        public void tearDown() throws Exception {
+                tearDownMethod.invoke(testClassInstance, arguments);
 
-                setupMethod.invoke(testClassInstance, arguments);
+                for (TearDown child : children) {
+                        child.tearDown();
+                }
         }
 
-        public boolean addChild(final Setup child) {
+        public boolean addChild(final TearDown child) {
                 return children.add(child);
         }
 }

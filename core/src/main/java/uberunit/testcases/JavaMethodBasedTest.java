@@ -23,7 +23,7 @@ import java.lang.reflect.Method;
  * Understands how to verify code correctness by sending messages to
  * objects via reflection.
  */
-public class JavaMethodTest implements Test {
+public class JavaMethodBasedTest implements Test {
 
         private final Object testClassInstance;
 
@@ -35,7 +35,7 @@ public class JavaMethodTest implements Test {
 
         private final boolean parallelizable;
 
-        public JavaMethodTest(final Object testClassInstance,
+        public JavaMethodBasedTest(final Object testClassInstance,
             final Method testMethod, final Object[] arguments,
             final boolean ignored, final boolean parallelizable) {
                 this.testClassInstance = testClassInstance;
