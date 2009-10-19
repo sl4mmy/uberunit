@@ -29,32 +29,33 @@ public class TestCase {
 
         private final TearDown tearDown;
 
-        private final ITest testCase;
+        private final Test test;
 
-        public TestCase(final Description description, final Setup setup,
-            final TearDown tearDown, final ITest testCase) {
+        public TestCase(final Description description,
+            final Setup setup, final TearDown tearDown,
+            final Test test) {
                 this.description = description;
                 this.setup = setup;
                 this.tearDown = tearDown;
-                this.testCase = testCase;
+                this.test = test;
         }
 
         public void run(final Observer observer) {
-                if (testCase.isIgnored()) {
-                        observer.testCaseIgnored(description);
+                if (test.isIgnored()) {
+                        observer.testIgnored(description);
                         return;
                 }
 
-                test(observer);
+                process(observer);
         }
 
         public boolean isParallelizable() {
-                return testCase.isParallelizable();
+                return test.isParallelizable();
         }
 
-        private void test(final Observer observer) {
+        private void process(final Observer observer) {
                 if (setUp(observer)) {
-                        testCase(observer);
+                        test(observer);
                 }
 
                 tearDown(observer);
@@ -80,13 +81,13 @@ public class TestCase {
                 }
         }
 
-        private void testCase(final Observer observer) {
+        private void test(final Observer observer) {
                 try {
-                        observer.inTestCase(description);
-                        testCase.test();
-                        observer.testCaseSucceeded(description);
+                        observer.inTest(description);
+                        test.test();
+                        observer.testSucceeded(description);
                 } catch (Exception e) {
-                        observer.testCaseFailed(description, e);
+                        observer.testFailed(description, e);
                 }
         }
 }

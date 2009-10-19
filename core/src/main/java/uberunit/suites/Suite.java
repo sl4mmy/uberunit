@@ -23,17 +23,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Understands how to schedule many tests at once.
+ * Understands how to schedule multiple test cases at once.
  */
 public class Suite implements Hierarchy<Suite> {
 
         private final List<Suite> children;
 
-        private final List<TestCase> tests;
+        private final List<TestCase> testCases;
 
         public Suite() {
                 this.children = new ArrayList<Suite>();
-                this.tests = new ArrayList<TestCase>();
+                this.testCases = new ArrayList<TestCase>();
         }
 
         public Suite(final Suite parent) {
@@ -42,21 +42,21 @@ public class Suite implements Hierarchy<Suite> {
                 parent.addChild(this);
         }
 
-        public Suite(final List<TestCase> tests) {
+        public Suite(final List<TestCase> testCases) {
                 this();
 
-                this.tests.addAll(tests);
+                this.testCases.addAll(testCases);
         }
 
-        public Suite(final List<TestCase> tests,
+        public Suite(final List<TestCase> testCases,
             final Suite parent) {
                 this(parent);
 
-                this.tests.addAll(tests);
+                this.testCases.addAll(testCases);
         }
 
         public void start(final MultiThreadedRunner runner) {
-                runner.scheduleAll(tests);
+                runner.scheduleAll(testCases);
 
                 for (Suite child : children) {
                         child.start(runner);

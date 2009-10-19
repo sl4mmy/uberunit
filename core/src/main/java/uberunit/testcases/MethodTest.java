@@ -15,7 +15,7 @@
  */
 package uberunit.testcases;
 
-import uberunit.ITest;
+import uberunit.Test;
 
 import java.lang.reflect.Method;
 
@@ -23,7 +23,7 @@ import java.lang.reflect.Method;
  * Understands how to verify code correctness by sending messages to
  * Java objects via reflection.
  */
-public class MethodTest implements ITest {
+public class MethodTest implements Test {
 
         private final Object testClassInstance;
 

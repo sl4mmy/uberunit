@@ -24,8 +24,8 @@ import java.util.concurrent.Executors;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
- * Understands how to execute suites of tests in parallel using Java's
- * standard concurrency features.
+ * Understands how to execute multiple test cases in parallel using
+ * Java's standard concurrency features.
  */
 public class MultiThreadedRunner {
 
@@ -47,11 +47,11 @@ public class MultiThreadedRunner {
                 }
         }
 
-        public void scheduleAll(final List<TestCase> tests) {
-                for (final TestCase test : tests) {
+        public void scheduleAll(final List<TestCase> testCases) {
+                for (final TestCase testCase : testCases) {
                         threadPool.submit(new Runnable() {
                                 public void run() {
-                                        test.run(observer);
+                                        testCase.run(observer);
                                 }
                         });
                 }

@@ -34,12 +34,12 @@ public interface Observer {
         void tearDownFailed(final Description description,
             final Exception failure);
 
-        void inTestCase(final Description description);
+        void inTest(final Description description);
 
-        void testCaseFailed(final Description description,
+        void testFailed(final Description description,
             final Exception failure);
 
-        void testCaseIgnored(final Description description);
+        void testIgnored(final Description description);
 
-        void testCaseSucceeded(final Description description);
+        void testSucceeded(final Description description);
 }
