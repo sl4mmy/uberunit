@@ -15,10 +15,14 @@
  */
 package uberunit;
 
+import uberunit.descriptions.Description;
+
 /**
  * Represents how to actually verify code correctness.
  */
 public interface Test {
+
+        Description getDescription();
 
         boolean isIgnored();
 

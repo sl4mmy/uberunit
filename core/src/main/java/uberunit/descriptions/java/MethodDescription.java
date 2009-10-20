@@ -13,11 +13,29 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-package uberunit.testcases;
+package uberunit.descriptions.java;
+
+import uberunit.descriptions.Description;
+
+import java.lang.reflect.Method;
 
 /**
- * Represents how to identify which methods verify code correctness.
+ * Understands how subroutines associated with a particular Java class
+ * are named.
  */
-public @interface Test {
+public class MethodDescription implements Description {
 
+        private final String name;
+
+        public MethodDescription(final Method method) {
+                final Class type = method.getDeclaringClass();
+                final String typeName = type.getCanonicalName();
+                final String methodName = method.getName();
+
+                this.name = typeName + "#" + methodName;
+        }
+
+        public String getName() {
+                return name;
+        }
 }

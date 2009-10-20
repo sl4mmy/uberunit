@@ -15,12 +15,16 @@
  */
 package uberunit;
 
-import uberunit.internal.Hierarchy;
+import uberunit.descriptions.Description;
 
 /**
  * Represents how to clean up after tests.
  */
-public interface TearDown extends Hierarchy<TearDown> {
+public interface TearDown {
+
+        Description getDescription();
+
+        boolean isIgnored();
 
         void tearDown() throws Exception;
 }

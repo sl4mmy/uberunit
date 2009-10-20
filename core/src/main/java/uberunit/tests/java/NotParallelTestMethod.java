@@ -13,11 +13,36 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-package uberunit.teardowns;
+package uberunit.tests.java;
+
+import uberunit.Test;
+import uberunit.descriptions.Description;
 
 /**
- * Represents how to identify test cleaners.
+ * Understands how to serially send messages to Java objects to verify
+ * code correctness.
  */
-public @interface TearDown {
+public class NotParallelTestMethod implements Test {
 
+        private final Test delegate;
+
+        public NotParallelTestMethod(final Test delegate) {
+                this.delegate = delegate;
+        }
+
+        public Description getDescription() {
+                return delegate.getDescription();
+        }
+
+        public boolean isIgnored() {
+                return delegate.isIgnored();
+        }
+
+        public boolean isParallelizable() {
+                return false;
+        }
+
+        public void test() throws Exception {
+                delegate.test();
+        }
 }

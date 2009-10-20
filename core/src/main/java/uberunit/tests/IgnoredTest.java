@@ -13,18 +13,34 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-package uberunit;
+package uberunit.tests;
 
+import uberunit.Test;
 import uberunit.descriptions.Description;
 
 /**
- * Represents how to initialize tests.
+ * Understands tests that should not be run.
  */
-public interface Setup {
+public class IgnoredTest implements Test {
 
-        Description getDescription();
+        private final Description description;
 
-        boolean isIgnored();
+        public IgnoredTest(final Description description) {
+                this.description = description;
+        }
 
-        void setUp() throws Exception;
+        public Description getDescription() {
+                return description;
+        }
+
+        public boolean isIgnored() {
+                return true;
+        }
+
+        public boolean isParallelizable() {
+                return true;
+        }
+
+        public void test() throws Exception {
+        }
 }

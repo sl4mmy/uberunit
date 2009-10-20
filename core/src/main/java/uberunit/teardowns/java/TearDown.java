@@ -13,11 +13,11 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-package uberunit.setups;
+package uberunit.teardowns.java;
 
 /**
- * Represents how to identify test initializers.
+ * Represents how to identify test cleaners.
  */
-public @interface SetUp {
+public @interface TearDown {
 
 }

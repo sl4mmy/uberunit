@@ -13,12 +13,11 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-package uberunit.testcases;
+package uberunit.tests.java;
 
 /**
- * Represents how to identify tests which should not be run
- * concurrently.
+ * Represents how to identify methods that verify code correctness.
  */
-public @interface NotParallel {
+public @interface Test {
 
 }

@@ -13,18 +13,12 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-package uberunit;
-
-import uberunit.descriptions.Description;
+package uberunit.tests.java;
 
 /**
- * Represents how to initialize tests.
+ * Represents how to identify tests that should not be run.
  */
-public interface Setup {
+public @interface Ignore {
 
-        Description getDescription();
-
-        boolean isIgnored();
-
-        void setUp() throws Exception;
+        String value() default "temporarily disabled";
 }

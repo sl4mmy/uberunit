@@ -13,47 +13,48 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-package uberunit.testcases;
+package uberunit.tests.java;
 
 import uberunit.Test;
+import uberunit.descriptions.Description;
 
 import java.lang.reflect.Method;
 
 /**
- * Understands how to verify code correctness by sending messages to
- * objects via reflection.
+ * Understands how to send messages to Java objects to verify code
+ * correctness.
  */
-public class JavaMethodBasedTest implements Test {
+public class TestMethod implements Test {
 
-        private final Object testClassInstance;
+        private final Object instance;
 
-        private final Method testMethod;
+        private final Method method;
 
         private final Object[] arguments;
 
-        private final boolean ignored;
+        private final Description description;
 
-        private final boolean parallelizable;
-
-        public JavaMethodBasedTest(final Object testClassInstance,
-            final Method testMethod, final Object[] arguments,
-            final boolean ignored, final boolean parallelizable) {
-                this.testClassInstance = testClassInstance;
-                this.testMethod = testMethod;
+        public TestMethod(final Object instance, final Method method,
+            final Object[] arguments, final Description description) {
+                this.instance = instance;
+                this.method = method;
                 this.arguments = arguments;
-                this.ignored = ignored;
-                this.parallelizable = parallelizable;
+                this.description = description;
+        }
+
+        public Description getDescription() {
+                return description;
         }
 
         public boolean isIgnored() {
-                return ignored;
+                return false;
         }
 
         public boolean isParallelizable() {
-                return parallelizable;
+                return true;
         }
 
         public void test() throws Exception {
-                testMethod.invoke(testClassInstance, arguments);
+                method.invoke(instance, arguments);
         }
 }

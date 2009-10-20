@@ -16,8 +16,7 @@
 package uberunit.descriptions;
 
 /**
- * Represents how to display information about individual tests in a
- * human-readable format.
+ * Represents how things are named.
  */
 public interface Description {
 

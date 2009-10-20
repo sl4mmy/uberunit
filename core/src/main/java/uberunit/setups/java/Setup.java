@@ -13,27 +13,11 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-package uberunit.descriptions;
-
-import java.lang.reflect.Method;
+package uberunit.setups.java;
 
 /**
- * Understands how to get the name of individual test methods written in
- * Java.
+ * Represents how to identify test initializers.
  */
-public class JavaMethodBasedTestDescription implements Description {
+public @interface Setup {
 
-        private final String testClassName;
-
-        private final String testMethodName;
-
-        public JavaMethodBasedTestDescription(final Class testClass,
-            final Method testMethod) {
-                this.testClassName = testClass.getCanonicalName();
-                this.testMethodName = testMethod.getName();
-        }
-
-        public String getName() {
-                return testClassName + "#" + testMethodName;
-        }
 }
