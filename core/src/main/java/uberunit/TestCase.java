@@ -17,6 +17,8 @@ package uberunit;
 
 import uberunit.descriptions.Description;
 import uberunit.observers.Observer;
+import uberunit.setups.Setups;
+import uberunit.teardowns.TearDowns;
 
 /**
  * Understands the process of automatically verifying code correctness.
@@ -25,18 +27,18 @@ public class TestCase {
 
         private final Description description;
 
-        private final Setup setup;
+        private final Setups setups;
 
-        private final TearDown tearDown;
+        private final TearDowns tearDowns;
 
         private final Test test;
 
         public TestCase(final Description description,
-            final Setup setup, final TearDown tearDown,
+            final Setups setups, final TearDowns tearDowns,
             final Test test) {
                 this.description = description;
-                this.setup = setup;
-                this.tearDown = tearDown;
+                this.setups = setups;
+                this.tearDowns = tearDowns;
                 this.test = test;
         }
 
@@ -46,39 +48,15 @@ public class TestCase {
                         return;
                 }
 
-                process(observer);
+                if (setups.setUp(observer)) {
+                        test(observer);
+                }
+
+                tearDowns.tearDown(observer);
         }
 
         public boolean isParallelizable() {
                 return test.isParallelizable();
-        }
-
-        private void process(final Observer observer) {
-                if (setUp(observer)) {
-                        test(observer);
-                }
-
-                tearDown(observer);
-        }
-
-        private boolean setUp(final Observer observer) {
-                try {
-                        observer.inSetUp(description);
-                        setup.setUp();
-                        return true;
-                } catch (Exception e) {
-                        observer.setUpFailed(description, e);
-                        return false;
-                }
-        }
-
-        private void tearDown(final Observer observer) {
-                try {
-                        observer.inTearDown(description);
-                        tearDown.tearDown();
-                } catch (Exception e) {
-                        observer.tearDownFailed(description, e);
-                }
         }
 
         private void test(final Observer observer) {
